@@ -1,0 +1,24 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="isOpen = true"
+                       (closed)="isOpen = false" hideToggle>
+    <mat-expansion-panel-header style="background:dodgerblue">
+
+      <mat-panel-title>
+        <button mat-icon-button (click)="isOpen=!isOpen">
+          <fa-icon [icon]="menu"></fa-icon>
+        </button>
+        Menu
+      </mat-panel-title>
+      <mat-panel-description>
+        SZTE Vízművek
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="column">
+      <div *ngFor="let item of navItems">
+        <div class="center-row">
+          <button [routerLink]="item.route" [color]="currentRoute===item.route?'accent':'primary'" mat-button>{{item.name}}</button>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

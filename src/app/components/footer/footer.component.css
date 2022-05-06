@@ -1,0 +1,16 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+#footer-details{
+  font-style: italic;
+  font-size: 80%;
+  padding: 0;
+  margin: 0;
+}
+
+
