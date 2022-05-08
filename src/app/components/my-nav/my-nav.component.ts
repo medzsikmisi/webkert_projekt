@@ -9,10 +9,11 @@ import {AuthService} from "../../auth/auth.service";
   styleUrls: ['./my-nav.component.css']
 })
 export class MyNavComponent {
-  @Input() title='';
+  @Input() title = '';
   navItems = [
     {name: 'Home', route: '/home'},
     {name: 'Submit value', route: '/submit'},
+    {name: 'Previous submits', route: '/history'},
     {name: 'Logout', route: '/login'}
   ];
 

@@ -1,0 +1,47 @@
+<div class="center column">
+  <div class="innerDiv">
+    <div style="text-align: center;">
+      <span>
+        <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="let item of historyItems" [value]="item.id">{{item.date}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button (click)="deleteItem(selected)">Delete</button>
+      </span><br>
+      <span>
+        <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selected2">
+          <mat-option *ngFor="let item of historyItems" [value]="item">{{item.date}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <mat-form-field appearance="outline" class="">
+    <mat-label>Current value</mat-label>
+    <input type="number" [formControl]="value" matInput placeholder="Type the value" required>
+  </mat-form-field>
+      <button mat-button (click)="updateItem()">Update</button>
+      </span>
+      <table id="history-table">
+        <thead>
+        <tr>
+          <td>
+            <b> Date</b>
+          </td>
+          <td>
+            <b>Value</b>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of historyItems">
+          <td>{{item.date}}</td>
+          <td>{{item.value}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

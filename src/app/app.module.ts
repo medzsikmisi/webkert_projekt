@@ -25,6 +25,9 @@ import {SubmitValueComponent} from './pages/submit-value/submit-value.component'
 import {AngularFireModule} from "@angular/fire/compat";
 import {AuthService} from "./auth/auth.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import { HistoryComponent } from './pages/history/history.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
 
@@ -33,6 +36,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'submit', component: SubmitValueComponent, canActivate: [AuthGuard]},
+  {path: 'history', component: HistoryComponent, canActivate: [AuthGuard]},
   {path: '**', component: ErrorComponent}
 ]
 const firebaseOptions={
@@ -49,7 +53,8 @@ const firebaseOptions={
     LoginComponent,
     SignupComponent,
     ErrorComponent,
-    SubmitValueComponent
+    SubmitValueComponent,
+    HistoryComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseOptions),
@@ -68,6 +73,8 @@ const firebaseOptions={
     MatInputModule,
     MatExpansionModule,
     ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
   providers: [AuthService],
   exports: [],

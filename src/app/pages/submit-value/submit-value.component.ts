@@ -26,6 +26,6 @@ export class SubmitValueComponent implements OnInit {
   }
 
   submitValue() {
-this.submitter.addNewValue(69);
+this.submitter.addNewValue(this.value.value);
   }
 }

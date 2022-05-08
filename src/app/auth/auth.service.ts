@@ -16,9 +16,8 @@ export class AuthService {
         if (!!res.user) {
           console.log('user is not null');
           returned = true;
-          res.user.getIdToken().then((token)=>{
-            localStorage.setItem('token',token);
-          })
+          let token = res.user.email;
+          localStorage.setItem('token',token??''.toString());
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('user', JSON.stringify(res.user));
         }
