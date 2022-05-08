@@ -62,7 +62,6 @@ export class SubmitterService {
       })
         .then(
           () => {
-
           },
         );
     })
