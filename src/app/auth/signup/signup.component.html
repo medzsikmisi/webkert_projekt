@@ -1,25 +1,25 @@
-<div class="center column">
+<div class="center column" style="z-index: 1 !important;">
   <div id="customCard" class="column">
     <fa-icon [icon]="userPlus" class="fa-3x center-row"></fa-icon>
     <h1>Sign Up</h1>
     <mat-error *ngIf="errors.emailError">Please type a real email</mat-error>
     <mat-form-field appearance="outline">
-      <input (submit)="checkEmail(email.value)" type="text" #email matInput placeholder="Please type your email">
+      <input type="text" matInput placeholder="Please type your email" required>
       <mat-label>Email</mat-label>
     </mat-form-field>
     <mat-error *ngIf="errors.passwordError">Please type a password</mat-error>
     <mat-form-field appearance="outline" class="">
       <mat-label>Password</mat-label>
-      <input type="text" #password matInput placeholder="Please type your password">
+      <input type="text" matInput placeholder="Please type your password" required>
     </mat-form-field>
     <mat-error *ngIf="errors.password2Error">Please type your password again</mat-error>
     <mat-error *ngIf="errors.differentPasswords">Passwords are not matching</mat-error>
     <mat-form-field appearance="outline" class="">
       <mat-label>Password confirmation</mat-label>
-      <input type="text" #password2 matInput placeholder="Please type your password again">
+      <input type="text" matInput placeholder="Please type your password again" required>
     </mat-form-field>
     <button
-      (click)="signUp(email.value,password.value,password2.value);email.setCustomValidity('wrong');email.checkValidity()"
+      (click)="signUp();"
       mat-raised-button color="primary">Sign up
     </button>
     <button mat-button routerLink="/login">Login</button>

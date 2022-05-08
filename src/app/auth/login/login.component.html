@@ -1,17 +1,22 @@
 <div class="center column">
-  <div id="customCard" class="column">
+  <div id="customCard" class="column" style="z-index: 2 !important;">
     <fa-icon [icon]="faLock" class="fa-3x center-row"></fa-icon>
     <h1>Login</h1>
+
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Please type your email">
+      <input type="text" [formControl]="email" id="email" matInput placeholder="Please type your email" required>
     </mat-form-field>
-
+    <br>
     <mat-form-field appearance="outline" class="">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="Please type your password">
+      <input type="text" [formControl]="password" id="password" matInput placeholder="Please type your password"
+             required>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="login()">Login</button>
+    <button mat-raised-button color="primary" (click)="login()">
+      Login
+    </button>
     <button mat-button routerLink="/signup">Sign up</button>
+
   </div>
 </div>

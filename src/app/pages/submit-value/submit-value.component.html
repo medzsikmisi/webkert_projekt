@@ -1,1 +1,13 @@
-<p>submit-value works!</p>
+<div class="padding center">
+  <h1>Submit your water meter reading</h1>
+  <div class="padding center-row"><mat-form-field appearance="outline" class="">
+    <mat-label>Current value</mat-label>
+    <input type="number" [formControl]="value" matInput placeholder="Type the value" required>
+  </mat-form-field>
+  </div>
+  <div class="padding center-row"><button mat-raised-button color="primary" (click)="submitValue()">
+    Save
+    <fa-icon [icon]="icon"></fa-icon>
+  </button>
+  </div>
+</div>

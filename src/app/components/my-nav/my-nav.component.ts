@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {faBars, IconDefinition} from "@fortawesome/free-solid-svg-icons";
 import {NavigationEnd, Router} from "@angular/router";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-my-nav',
@@ -8,6 +9,7 @@ import {NavigationEnd, Router} from "@angular/router";
   styleUrls: ['./my-nav.component.css']
 })
 export class MyNavComponent {
+  @Input() title='';
   navItems = [
     {name: 'Home', route: '/home'},
     {name: 'Submit value', route: '/submit'},
@@ -17,8 +19,10 @@ export class MyNavComponent {
   menu: IconDefinition;
   isOpen: boolean;
   currentRoute: string;
+  isLoggedIn = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth: AuthService) {
+    this.isLoggedIn = auth.isLoggedIn();
     this.currentRoute = '';
     this.isOpen = false;
     this.menu = faBars;
@@ -29,4 +33,8 @@ export class MyNavComponent {
     });
   }
 
+  logOut() {
+    this.auth.logout();
+    this.router.navigate(['/login'])
+  }
 }

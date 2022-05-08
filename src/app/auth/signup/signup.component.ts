@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {faUserPlus, IconDefinition} from "@fortawesome/free-solid-svg-icons";
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-signup',
@@ -15,23 +18,34 @@ export class SignupComponent implements OnInit {
     password2Error: false,
     differentPasswords: false
   };
+  email: FormControl;
+  password: FormControl;
+  password2: FormControl;
+  private auth: AuthService;
 
-  constructor() {
+  constructor(auth: AuthService, private router: Router) {
+    this.email = new FormControl('', [Validators.email, Validators.required]);
+    this.password = new FormControl('', [Validators.required]);
+    this.password2 = new FormControl('', [Validators.required]);
+    this.auth = auth;
     this.userPlus = faUserPlus;
   }
 
   ngOnInit(): void {
   }
 
-  signUp(email: string, password: string, password2: string) {
-
-    this.errors.anyError = this.errors.anyError || this.checkEmail(email);
-    this.errors.anyError = this.errors.anyError || this.checkPassword(password);
-    this.errors.anyError = this.errors.anyError || this.checkPassword2(password2);
-    this.errors.anyError = this.errors.anyError || this.checkMatching(password, password2);
+  signUp() {
+    this.errors.anyError = false;
+    this.errors.anyError = this.errors.anyError || this.checkEmail(this.email.value);
+    this.errors.anyError = this.errors.anyError || this.checkPassword(this.password.value);
+    this.errors.anyError = this.errors.anyError || this.checkPassword2(this.password2.value);
+    this.errors.anyError = this.errors.anyError || this.checkMatching(this.password.value, this.password2.value);
     if (this.errors.anyError) {
       return;
     }
+    this.auth.signUp(this.email.value, this.password.value).then(() => {
+      this.router.navigate(['/home']);
+    });
   }
 
   checkEmail(email: string) {
@@ -58,7 +72,7 @@ export class SignupComponent implements OnInit {
       this.errors.anyError = true;
       this.errors.password2Error = true;
     } else {
-      this.errors.password2Error = true;
+      this.errors.password2Error = false;
     }
     return this.errors.password2Error;
   }
@@ -68,7 +82,7 @@ export class SignupComponent implements OnInit {
       this.errors.anyError = true;
       this.errors.differentPasswords = true;
     } else {
-      this.errors.differentPasswords = true;
+      this.errors.differentPasswords = false;
     }
     return this.errors.differentPasswords;
   }

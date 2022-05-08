@@ -24,6 +24,7 @@ import {AuthGuard} from "./shared/auth.guard";
 import {SubmitValueComponent} from './pages/submit-value/submit-value.component';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AuthService} from "./auth/auth.service";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
 
@@ -66,6 +67,7 @@ const firebaseOptions={
     FontAwesomeModule,
     MatInputModule,
     MatExpansionModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthService],
   exports: [],

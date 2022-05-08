@@ -10,10 +10,19 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
+    let returned: boolean = false;
     await this.firebaseAuth.signInWithEmailAndPassword(email, password)
       .then(res => {
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('user', JSON.stringify(res.user));
+        if (!!res.user) {
+          console.log('user is not null');
+          returned = true;
+          res.user.getIdToken().then((token)=>{
+            localStorage.setItem('token',token);
+          })
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('user', JSON.stringify(res.user));
+        }
+        return returned;
       })
   }
 
@@ -26,11 +35,15 @@ export class AuthService {
   }
 
   logout() {
-    this.firebaseAuth.signOut();
+    localStorage.removeItem('isLoggedIn');
     localStorage.clear();
+    this.firebaseAuth.signOut();
   }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('isLoggedIn');
+  }
+  getToken(){
+    return localStorage.getItem('token');
   }
 }
