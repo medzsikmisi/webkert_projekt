@@ -10,7 +10,7 @@
     <br>
     <mat-form-field appearance="outline" class="">
       <mat-label>Password</mat-label>
-      <input type="text" [formControl]="password" id="password" matInput placeholder="Please type your password"
+      <input type="password" minlength="8" [formControl]="password" id="password" matInput placeholder="Please type your password"
              required>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="login()">
