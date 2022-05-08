@@ -17,7 +17,7 @@ export class AuthService {
           console.log('user is not null');
           returned = true;
           let token = res.user.email;
-          localStorage.setItem('token',token??''.toString());
+          localStorage.setItem('token', token ?? ''.toString());
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('user', JSON.stringify(res.user));
         }
@@ -28,8 +28,12 @@ export class AuthService {
   async signUp(email: string, password: string) {
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(res => {
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('user', JSON.stringify(res.user));
+        if (!!res.user) {
+          let token = res.user.email;
+          localStorage.setItem('token', token ?? ''.toString());
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('user', JSON.stringify(res.user));
+        }
       })
   }
 
@@ -42,7 +46,8 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('isLoggedIn');
   }
-  getToken(){
+
+  getToken() {
     return localStorage.getItem('token');
   }
 }
