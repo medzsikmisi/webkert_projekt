@@ -41,6 +41,8 @@ export class SignupComponent implements OnInit {
     this.errors.anyError = this.errors.anyError || this.checkPassword2(this.password2.value);
     this.errors.anyError = this.errors.anyError || this.checkMatching(this.password.value, this.password2.value);
     if (this.errors.anyError) {
+      console.log('signup error, wrong values');
+      console.log(this.errors);
       return;
     }
     this.auth.signUp(this.email.value, this.password.value).then(() => {

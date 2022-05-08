@@ -4,19 +4,19 @@
     <h1>Sign Up</h1>
     <mat-error *ngIf="errors.emailError">Please type a real email</mat-error>
     <mat-form-field appearance="outline">
-      <input type="text" matInput placeholder="Please type your email" required>
+      <input [formControl]="email" type="text" matInput placeholder="Please type your email" required>
       <mat-label>Email</mat-label>
     </mat-form-field>
     <mat-error *ngIf="errors.passwordError">Please type a password</mat-error>
     <mat-form-field appearance="outline" class="">
       <mat-label>Password</mat-label>
-      <input type="password"  minlength="8" matInput placeholder="Please type your password" required>
+      <input [formControl]="password" type="password"  minlength="8" matInput placeholder="Please type your password" required>
     </mat-form-field>
     <mat-error *ngIf="errors.password2Error">Please type your password again</mat-error>
     <mat-error *ngIf="errors.differentPasswords">Passwords are not matching</mat-error>
     <mat-form-field appearance="outline" class="">
       <mat-label>Password confirmation</mat-label>
-      <input type="password" minlength="8" matInput placeholder="Please type your password again" required>
+      <input [formControl]="password2" type="password" minlength="8" matInput placeholder="Please type your password again" required>
     </mat-form-field>
     <button
       (click)="signUp();"
